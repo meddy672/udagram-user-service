@@ -11,9 +11,8 @@ import {V0_USER_MODELS} from './controllers/v0/model.index';
 (async () => {
   await sequelize.addModels(V0_USER_MODELS);
   await sequelize.sync({ force: true, logging: console.log });
-
   const app = express();
-  const port = process.env.PORT || 8080;
+  const port = process.env.PORT || 8082;
 
   app.use(express.json());
 
