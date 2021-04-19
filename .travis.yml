@@ -1,0 +1,32 @@
+language: node_js
+node_js:
+  - 11.15.0
+
+services:
+  - docker
+
+before_install:
+  - echo $TRAVIS_BUILD_DIR
+  - echo "changing into user service directory..."
+  - cd udagram-api/services/users
+
+# Pre-testing installs
+install:
+  - echo "installing dependencies..."
+  - npm install
+  - echo "dependencies installed"
+
+# Scripts to be run such as tests
+before_script:
+  - echo "running build command..."
+  - npm run build
+  - echo "build completed"
+
+script:
+  - docker --version # print the version for logging
+  - docker build -f Dockerfile -t meddy672/udagramusers .
+
+# Tasks to perform after the process is successful. Formatting the Docker username and password as below enables you to programmatically log in without having the password exposed in logs.
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push meddy672/udagramusers:latest
