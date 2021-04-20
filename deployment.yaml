@@ -1,0 +1,21 @@
+apiVersion: udagram-users/v1
+kind: Deployment
+metadata:
+  name: udagram-users
+  labels:
+    app: udagram-users
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: udagram-users
+  template:
+    metadata:
+      labels:
+        app: udagram-users
+    spec:
+      containers:
+      - name: udagram-users
+        image: meddy672/udagramusers
+        ports:
+        - containerPort: 8082

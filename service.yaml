@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: udagram-users
+  labels:
+    run: udagram-users
+spec:
+  ports:
+  - port: 8000
+    protocol: TCP
+  selector:
+    run: udagram-users
