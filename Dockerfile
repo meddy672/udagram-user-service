@@ -5,6 +5,3 @@ RUN  npm install
 COPY ./www .
 EXPOSE 80
 CMD ["node", "server.js"]
-
-FROM nginx:alpine
-COPY nginx.conf /etc/ngnix/nginx.conf
